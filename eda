@@ -1,0 +1,32 @@
+#nunique
+from simple_colors import *
+
+
+cat_cols = ['departure city', 'location','class', 'segment',
+            'sub-class', 'delivery type','address code', 
+            'departure state']
+
+for i in cat_cols:
+    print(red(i), ['bold'])
+    print('nunique :' , train[i].nunique())
+    print(train[i].value_counts(sort = True))
+    print()
+    print('----------------------------------------------------------------------------------------*')
+    print()
+    
+    
+    
+    
+
+#crosstab
+
+for i in list(train.select_dtypes(include = 'object'))+['Reco_Policy_Cat']:
+    print('COLUMN:' ,green(i))
+    print('nunique :' , train[i].nunique())
+    print(pd.DataFrame(pd.crosstab(train[i],train['Response'])).sort_values(by = 1,ascending = False) ,  pd.DataFrame(pd.crosstab(nan_values[i],train['Response'])).sort_values(by = 1,ascending = False))
+    print()
+    print('----------------------------------------------------------------------------------------*')
+    print()
+    
+    
+    
